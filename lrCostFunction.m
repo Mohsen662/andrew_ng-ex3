@@ -35,9 +35,9 @@ grad = zeros(size(theta));
 %           temp(1) = 0;   % because we don't add anything for j = 0  
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 
-m = size(X, 1);
+[m n] = size(X);
 
-new_theta = ones(m, 1) * theta';
+new_theta = ones(n, 1) * theta';
 
 X_theta = X * new_theta;
 
