@@ -35,17 +35,27 @@ grad = zeros(size(theta));
 %           temp(1) = 0;   % because we don't add anything for j = 0  
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 
-%n = size(X, 2);
-reg_term = (lambda / (2*m)) * sum(theta(2:end, 1) .^ 2);
-reg_teram_grad = (lambda / m) * theta(2:end, 1);
+m = size(X, 1);
 
-X_theta = X(:, end)' * theta;
+new_theta = ones(m, 1) * theta';
+
+X_theta = X * new_theta;
+
 hx = sigmoid(X_theta);
 term1 = -y .* log(hx);
 term2 = (1-y) .* log(1-hx);
+
+reg_term = (lambda / (2*m)) * sum(theta(2:end, 1) .^ 2);
+reg_teram_grad = (lambda / m) * theta(2:end, 1);
+
 J = (1/m) * sum(term1 - term2) + reg_term;
 
 grad = (1/m) * (X' .* (hx-y)) + reg_teram_grad;
+
+
+
+
+
 
 
 
